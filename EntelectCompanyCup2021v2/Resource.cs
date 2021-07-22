@@ -2,14 +2,15 @@
 {
     public class Resource
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int PointsPerRawUnit { get; set; }
-        public int PointsPerProcessedUnit { get; set; }
-        public int ProcessingTime { get; set; }
-        public decimal PointsPerTimeProcessed { get; set; }
+        public int Id { get; }
+        public string Name { get; }
+        public int PointsPerRawUnit { get; }
+        public int PointsPerProcessedUnit { get; }
+        public int ProcessingTime { get; }
+        public decimal PointsPerTimeProcessed { get; }
+        public int Priority { get; }
 
-        public Resource(int id, string name, int pointsPerRawUnit, int pointsPerProcessedUnit, int processingTime, decimal pointsPerTimeProcessed)
+        public Resource(int id, string name, int pointsPerRawUnit, int pointsPerProcessedUnit, int processingTime, decimal pointsPerTimeProcessed, int priority)
         {
             Id = id;
             Name = name;
@@ -17,6 +18,7 @@
             PointsPerProcessedUnit = pointsPerProcessedUnit;
             ProcessingTime = processingTime;
             PointsPerTimeProcessed = pointsPerTimeProcessed;
+            Priority = priority;
         }
     }
 }
