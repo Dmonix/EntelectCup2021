@@ -28,7 +28,7 @@ namespace EntelectCompanyCup2021v2
             var sim = ReadFile($"{inputFileNumber}.txt");
 
             // do things
-            string[] outputContent = new string[] { };
+            string[] outputContent = new string[] { "test", "test"};
 
             // generate output
             OutputFile($"output-{inputFileNumber}.txt", outputContent);
@@ -78,7 +78,7 @@ namespace EntelectCompanyCup2021v2
             var content = "";
             foreach(var line in lines)
             {
-                content = content + line;
+                content = content + line + "\n";
             }
 
             File.WriteAllText(name, content);
