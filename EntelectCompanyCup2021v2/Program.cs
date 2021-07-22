@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
 
 namespace EntelectCompanyCup2021v2
 {
@@ -42,8 +41,9 @@ namespace EntelectCompanyCup2021v2
             var numberOfQuotas = simulation.QuotaCount;
             for(int i = 0; i< numberOfQuotas; i++)
             {
-                Quota.Create(lines[quotaStartIndex + i]);
+                quotas.Add(Quota.Create(lines[quotaStartIndex + i]));
             }
+            simulation.Quotas = quotas;
 
             var clusterStartIndex = 1 + numberOfQuotas;
             // Read resources - UR
@@ -52,8 +52,14 @@ namespace EntelectCompanyCup2021v2
             for (int i = 0; i <= numberOfResources; i++)
             {
                 var clusterData = lines[clusterStartIndex + i];
-                ResourceCluster.Create
+                var clusterInfo = clusterData.Split('|');
+                for(var x = 1; x<clusterInfo.Length; x++)
+                {
+
+                    clusters.Add(ResourceCluster.Create(clusterInfo[0], clusterInfo[x]));
+                }
             }
+            simulation.Clusters = clusters;
 
 
             return simulation;
