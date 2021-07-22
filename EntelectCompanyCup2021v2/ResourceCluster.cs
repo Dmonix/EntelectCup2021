@@ -15,6 +15,7 @@ namespace EntelectCompanyCup2021v2
         public int Z { get; }
         public int NumberOfResources { get; }
         public double DistanceFromCenter { get; }
+        public double DistanceFromCurrent { get; private set; }
         public bool Visited = false;
 
         public ResourceCluster(int resourceId, string clusterId, int x, int y, int z, int numberOfResources)
@@ -32,6 +33,16 @@ namespace EntelectCompanyCup2021v2
         {
             var data = resourceData.Split(',');
             return new ResourceCluster(int.Parse(resourceId), data[0], int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]), int.Parse(data[4]));
+        }
+
+        public void CalculateDistanceFromPosition(int x, int y, int z)
+        {
+            DistanceFromCurrent = Math.Sqrt(Square(X - x) + Square(Y - y) + Square(Z - z));
+        }
+
+        public double Square(int a)
+        {
+            return a * a;
         }
     }
 }
