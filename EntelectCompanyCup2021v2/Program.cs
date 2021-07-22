@@ -29,8 +29,7 @@ namespace EntelectCompanyCup2021v2
             var sim = ReadFile($"{inputFileNumber}.txt");
 
             // do things
-            string[] outputContent = new string[] { "test", "test"};
-            var alt = Traverse(sim);
+            var outputContent = Traverse(sim);
 
             // generate output
             OutputFile($"output-{inputFileNumber}.txt", outputContent);
@@ -40,21 +39,30 @@ namespace EntelectCompanyCup2021v2
         {
             var ships = sim.ShipCount;
             var quotas = sim.Quotas.OrderByDescending(q => q.QuotaAmount).ToList();
-
-            for(var x = 0; x<ships; x++)
+            List<string> output  = new List<string>();
+            for (var x = 0; x<ships; x++)
             {
                var subClusters = sim.Clusters
                     .Where(c => c.ResourceId == quotas[x].ResourceId)
-                    .OrderByDescending(c => c.NumberOfResources);
+                    .OrderByDescending(c => c.NumberOfResources).ToList();
+
+                List<string> resourceClusterIds = new List<string>() ;
 
                 var shipCapacity = sim.ShipCapacity;
-                while(shipCapacity > 0)
-                {
-
+                
+                for(var y = 0; y< subClusters.Count; y++) { 
+                    if(shipCapacity - subClusters[y].NumberOfResources > 0)
+                    {
+                        resourceClusterIds.Add(subClusters[y].ClusterId);
+                    } else
+                    {
+                        resourceClusterIds.Add("0");
+                    }
                 }
+                output.Add(String.Join(",", resourceClusterIds.ToArray()));
             }
 
-            return new string[] { "test", "test" };
+            return output.ToArray();
         }
 
         static Simulation ReadFile(string inputFileName)
