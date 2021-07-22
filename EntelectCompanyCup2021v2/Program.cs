@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace EntelectCompanyCup2021v2
 {
@@ -25,6 +26,12 @@ namespace EntelectCompanyCup2021v2
             Console.WriteLine("Hello World!");
             var inputFileNumber = 1;
             var sim = ReadFile($"{inputFileNumber}.txt");
+
+            // do things
+            string[] outputContent = new string[] { };
+
+            // generate output
+            OutputFile($"output-{inputFileNumber}.txt", outputContent);
         }
 
         static Simulation ReadFile(string inputFileName)
@@ -64,6 +71,17 @@ namespace EntelectCompanyCup2021v2
 
 
             return simulation;
+        }
+
+        static void OutputFile(string name, string [] lines)
+        {
+            var content = "";
+            foreach(var line in lines)
+            {
+                content = content + line;
+            }
+
+            File.WriteAllText(name, content);
         }
     }
 }
