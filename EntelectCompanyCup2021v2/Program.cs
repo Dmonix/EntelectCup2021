@@ -17,21 +17,9 @@ namespace EntelectCompanyCup2021v2
             string[] lines = File.ReadAllLines(inputFileName);
 
             // Generate sim
-            var simInfo = lines[0].Split(','); // first line
+            var simInfo = lines[0]; // first line
             var simulation = Simulation.Create(simInfo);
 
-            // Set map rows
-            var mapIndex = 1;
-
-            var map = new Map();
-
-            for (int i = 0; i < simulation.MapHeight; i++)
-            {
-                var rowNumber = simulation.MapHeight - i;
-                map.AddRow(lines[mapIndex + i], rowNumber);
-            }
-
-            simulation.Map = map;
 
             return simulation;
         }
