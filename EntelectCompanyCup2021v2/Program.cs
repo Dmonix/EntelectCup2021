@@ -29,12 +29,15 @@ namespace EntelectCompanyCup2021v2
 
             foreach(var file in inputFiles)
             {
+                Console.WriteLine($"Building sim for file {file}");
                 var sim = ReadFile($"{file}.txt");
 
                 // do things
+                Console.WriteLine($"Traversing sim {file}");
                 var outputContent = Traverse(sim);
 
                 // generate output
+                Console.WriteLine($"Report for sim {file} being written");
                 OutputFile($"output-{file}.txt", outputContent);
             }
         }
@@ -55,33 +58,76 @@ namespace EntelectCompanyCup2021v2
 
             List<string> output  = new List<string>();
 
-            var startingResource = 0;
-            for (var x = 0; x < sim.Ships.Count; x++)
+            var remainingClusters = allResourceClusters;
+            var availableShips = sim.Ships;
+            var shipOutput = new List<List<string>>();
+            foreach (var ship in availableShips)
             {
-                List<string> resourceClusterIds = new List<string>() ;
+                shipOutput.Add(new List<string>());
+            }
 
-                var shipCapacity = sim.ShipCapacity;
-                
-                for(var y = startingResource; y< allResourceClusters.Count; y++) { 
-                    if(shipCapacity - allResourceClusters[y].NumberOfResources > 0)
+            var clustersToVisit = true;
+
+            while (availableShips.Any() && clustersToVisit)
+            {
+                remainingClusters = remainingClusters.Where(rc => !rc.Visited).OrderByDescending(rc => rc.DistanceFromCenter).ToList();
+                var count = 0;
+                foreach (var ship in availableShips)
+                {
+                    if (remainingClusters.Count > count)
                     {
-                        if (y == allResourceClusters.Count -1)
+                        shipOutput[ship.Id].Add(remainingClusters[count].ClusterId);
+                        remainingClusters[count].Visited = true;
+                        ship.Capacity -= remainingClusters[count].NumberOfResources;
+                        if (ship.Capacity <= 0)
                         {
-                            resourceClusterIds.Add("0");
-                            startingResource = y;
-                            break;
+                            ship.IsFull = true;
                         }
-                        resourceClusterIds.Add(allResourceClusters[y].ClusterId);
-                        shipCapacity -= allResourceClusters[y].NumberOfResources;
-                    } else
-                    {
-                        resourceClusterIds.Add("0");
-                        startingResource = y;
-                        break;
+
+                        count++;
                     }
                 }
-                output.Add(String.Join(",", resourceClusterIds.ToArray()));
+
+                var clustersRemaining = remainingClusters.Where(rc => !rc.Visited).ToList().Count();
+
+                availableShips = availableShips.Where(s => !s.IsFull).ToList();
+                clustersToVisit = clustersRemaining > 0;
             }
+
+            foreach(var so in shipOutput)
+            {
+                output.Add(string.Join(",", so.ToArray()));
+            }
+
+            //var startingResource = 0;
+
+
+            //for (var x = 0; x < sim.Ships.Count; x++)
+            //{
+            //    List<string> resourceClusterIds = new List<string>() ;
+
+            //    var shipCapacity = sim.ShipCapacity;
+                
+            //    for(var y = startingResource; y< allResourceClusters.Count; y++) { 
+            //        if(shipCapacity - allResourceClusters[y].NumberOfResources > 0)
+            //        {
+            //            if (y == allResourceClusters.Count -1)
+            //            {
+            //                resourceClusterIds.Add("0");
+            //                startingResource = y;
+            //                break;
+            //            }
+            //            resourceClusterIds.Add(allResourceClusters[y].ClusterId);
+            //            shipCapacity -= allResourceClusters[y].NumberOfResources;
+            //        } else
+            //        {
+            //            resourceClusterIds.Add("0");
+            //            startingResource = y;
+            //            break;
+            //        }
+            //    }
+            //    output.Add(String.Join(",", resourceClusterIds.ToArray()));
+            //}
 
             return output.ToArray();
         }
