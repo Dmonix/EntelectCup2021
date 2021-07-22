@@ -23,7 +23,8 @@ namespace EntelectCompanyCup2021v2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var sim = ReadFile("input.txt");
+            var inputFileNumber = 1;
+            var sim = ReadFile($"{inputFileNumber}.txt");
         }
 
         static Simulation ReadFile(string inputFileName)
@@ -45,11 +46,11 @@ namespace EntelectCompanyCup2021v2
             }
             simulation.Quotas = quotas;
 
-            var clusterStartIndex = 1 + numberOfQuotas;
+            var clusterStartIndex = numberOfQuotas + quotaStartIndex;
             // Read resources - UR
             var numberOfResources = simulation.UniqueResources;
             List<ResourceCluster> clusters = new List<ResourceCluster>();
-            for (int i = 0; i <= numberOfResources; i++)
+            for (int i = 0; i < numberOfResources; i++)
             {
                 var clusterData = lines[clusterStartIndex + i];
                 var clusterInfo = clusterData.Split('|');

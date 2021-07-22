@@ -1,0 +1,16 @@
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\1.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\2.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\3.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\4.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\5.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\input.txt
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\EntelectCompanyCup2021v2.exe.config
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\EntelectCompanyCup2021v2.exe
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\EntelectCompanyCup2021v2.pdb
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\EMK.Cartography.dll
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\bin\Debug\EMK.Collections.dll
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\obj\Debug\EntelectCompanyCup2021v2.csproj.AssemblyReference.cache
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\obj\Debug\EntelectCompanyCup2021v2.csproj.CoreCompileInputs.cache
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\obj\Debug\EntelectCompanyCup2021v2.csproj.CopyComplete
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\obj\Debug\EntelectCompanyCup2021v2.exe
+C:\Users\jarod.kurland\Documents\Projects\EntelectCup2021\EntelectCompanyCup2021v2\obj\Debug\EntelectCompanyCup2021v2.pdb
