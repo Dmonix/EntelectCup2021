@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EntelectCompanyCup2021v2
@@ -19,6 +20,7 @@ namespace EntelectCompanyCup2021v2
 
         public List<Quota> Quotas { get; set; } = new List<Quota>();
         public List<ResourceCluster> Clusters { get; set; } = new List<ResourceCluster>();
+        public List<Resource> SimulationResources = new List<Resource>();
 
         public Simulation(int widthX, int heightY, int depthZ, int uniqueResources, int shipCount, int shipCapacity, int labCount, int outpostMaterialThreshold, int quotaCount)
         {
@@ -40,6 +42,15 @@ namespace EntelectCompanyCup2021v2
 
             return new Simulation(int.Parse(coOrds[0]), int.Parse(coOrds[1]), int.Parse(coOrds[2]), 
                 int.Parse(items[1]), int.Parse(items[2]), int.Parse(items[3]), int.Parse(items[4]), int.Parse(items[5]), int.Parse(items[6]));
+        }
+
+        public void ProcessQuotas(List<Resource> resources)
+        {
+            for(int i = 0; i < Quotas.Count; i++)
+            {
+                SimulationResources.Add(resources.SingleOrDefault(r => r.Id == Quotas[i].ResourceId));
+                SimulationResources[i].SetResourceQuota(Quotas[i].QuotaAmount);
+            }
         }
     }
 }

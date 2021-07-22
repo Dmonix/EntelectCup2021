@@ -99,7 +99,10 @@ namespace EntelectCompanyCup2021v2
             {
                 quotas.Add(Quota.Create(lines[quotaStartIndex + i]));
             }
+
             simulation.Quotas = quotas;
+
+            simulation.ProcessQuotas(Resources);
 
             var clusterStartIndex = numberOfQuotas + quotaStartIndex;
             // Read resources - UR
