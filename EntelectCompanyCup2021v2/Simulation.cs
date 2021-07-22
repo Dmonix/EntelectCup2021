@@ -17,6 +17,9 @@ namespace EntelectCompanyCup2021v2
         public int OutpostMaterialThreshold { get; }
         public int QuotaCount { get; }
 
+        public List<Quota> Quotas { get; set; } = new List<Quota>();
+        public List<ResourceCluster> Clusters { get; set; } = new List<ResourceCluster>();
+
         public Simulation(int widthX, int heightY, int depthZ, int uniqueResources, int shipCount, int shipCapacity, int labCount, int outpostMaterialThreshold, int quotaCount)
         {
             WidthX = widthX;

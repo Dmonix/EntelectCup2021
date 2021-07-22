@@ -1,4 +1,10 @@
-﻿namespace EntelectCompanyCup2021v2
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EntelectCompanyCup2021v2
 {
     public class ResourceCluster
     {
