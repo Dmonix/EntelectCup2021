@@ -42,7 +42,7 @@ namespace EntelectCompanyCup2021v2
         static string[] Traverse(Simulation sim)
         {
             var ships = sim.ShipCount;
-            var quotas = sim.Quotas.OrderByDescending(q => q.QuotaAmount).ToList();
+            var quotas = sim.Quotas.OrderBy(q => q.QuotaAmount).ToList();
 
             var allResourceClusters = new List<ResourceCluster>();
             foreach(var quota in quotas)
