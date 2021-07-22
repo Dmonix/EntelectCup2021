@@ -22,10 +22,17 @@ namespace EntelectCompanyCup2021v2
 
             // Read quotas - NQ
             var numberOfQuotas = simulation.QuotaCount;
+            for(int i = 0; i< numberOfQuotas; i++)
+            {
+
+            }
 
             // Read resources - UR
             var numberOfResources = simulation.UniqueResources;
+            for (int i = 1+ numberOfQuotas; i <= numberOfResources; i++)
+            {
 
+            }
 
 
             return simulation;
