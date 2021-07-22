@@ -25,14 +25,18 @@ namespace EntelectCompanyCup2021v2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var inputFileNumber = 1;
-            var sim = ReadFile($"{inputFileNumber}.txt");
+            List<int> inputFiles = new List<int>() { 1, 2, 3, 4, 5 };
 
-            // do things
-            var outputContent = Traverse(sim);
+            foreach(var file in inputFiles)
+            {
+                var sim = ReadFile($"{file}.txt");
 
-            // generate output
-            OutputFile($"output-{inputFileNumber}.txt", outputContent);
+                // do things
+                var outputContent = Traverse(sim);
+
+                // generate output
+                OutputFile($"output-{file}.txt", outputContent);
+            }
         }
 
         static string[] Traverse(Simulation sim)
