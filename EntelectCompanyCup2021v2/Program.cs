@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EntelectCompanyCup2021v2
@@ -29,9 +30,31 @@ namespace EntelectCompanyCup2021v2
 
             // do things
             string[] outputContent = new string[] { "test", "test"};
+            var alt = Traverse(sim);
 
             // generate output
             OutputFile($"output-{inputFileNumber}.txt", outputContent);
+        }
+
+        static string[] Traverse(Simulation sim)
+        {
+            var ships = sim.ShipCount;
+            var quotas = sim.Quotas.OrderByDescending(q => q.QuotaAmount).ToList();
+
+            for(var x = 0; x<ships; x++)
+            {
+               var subClusters = sim.Clusters
+                    .Where(c => c.ResourceId == quotas[x].ResourceId)
+                    .OrderByDescending(c => c.NumberOfResources);
+
+                var shipCapacity = sim.ShipCapacity;
+                while(shipCapacity > 0)
+                {
+
+                }
+            }
+
+            return new string[] { "test", "test" };
         }
 
         static Simulation ReadFile(string inputFileName)
