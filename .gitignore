@@ -1,0 +1,26 @@
+fem-frontend/src/assets/fem-icons.old/
+
+## Vscode
+.vscode/
+
+## Visual studio
+/.vs/Entelect Projects/v16/.suo
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+
+# Rider auto-generates .iml files, and contentModel.xml
+**/.idea/**/*.iml
+**/.idea/**/contentModel.xml
+**/.idea/**/modules.xml
+**/.idea/**/workspace.xml
+**/.idea/**/indexLayout.xml
+**/.idea/**/vcs.xml
+**/.idea/**/projectSettingsUpdater.xml
+
+# MacOS
+.DS_Store
+
+**/node_modules/**
+
+**.jwt
+/fem-backend/**/*.orig
