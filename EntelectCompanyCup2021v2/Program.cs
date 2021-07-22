@@ -20,6 +20,13 @@ namespace EntelectCompanyCup2021v2
             var simInfo = lines[0]; // first line
             var simulation = Simulation.Create(simInfo);
 
+            // Read quotas - NQ
+            var numberOfQuotas = simulation.QuotaCount;
+
+            // Read resources - UR
+            var numberOfResources = simulation.UniqueResources;
+
+
 
             return simulation;
         }
