@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntelectCompanyCup2021v2
 {
-    class Program
+    static class Program
     {
         public static List<Resource> Resources = new List<Resource>()
         {
@@ -52,7 +52,9 @@ namespace EntelectCompanyCup2021v2
             {
                 var subClusters = sim.Clusters
                      .Where(c => c.ResourceId == quota.ResourceId)
-                     .OrderByDescending(c => c.DistanceFromCenter).ToList();
+                     .OrderByDescending(c => c.NumberOfResources)
+                     .ThenBy(c => c.DistanceFromCenter)
+                     .ToList();
                 allResourceClusters.AddRange(subClusters);
             }
 
@@ -130,6 +132,14 @@ namespace EntelectCompanyCup2021v2
             //}
 
             return output.ToArray();
+        }
+
+        static IEnumerable<IEnumerable<ResourceCluster>> Split(this ResourceCluster[] array, int size)
+        {
+            for (var i = 0; i < (float)array.Length / size; i++)
+            {
+                yield return array.Skip(i * size).Take(size);
+            }
         }
 
         static Simulation ReadFile(string inputFileName)
