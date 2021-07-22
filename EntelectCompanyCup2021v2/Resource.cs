@@ -8,9 +8,10 @@
         public int PointsPerProcessedUnit { get; }
         public int ProcessingTime { get; }
         public decimal PointsPerTimeProcessed { get; }
-        public int Priority { get; }
+        public decimal PriorityScore { get; private set; }
+        public decimal Quota { get; private set; }
 
-        public Resource(int id, string name, int pointsPerRawUnit, int pointsPerProcessedUnit, int processingTime, decimal pointsPerTimeProcessed, int priority)
+        public Resource(int id, string name, int pointsPerRawUnit, int pointsPerProcessedUnit, int processingTime, decimal pointsPerTimeProcessed)
         {
             Id = id;
             Name = name;
@@ -18,7 +19,12 @@
             PointsPerProcessedUnit = pointsPerProcessedUnit;
             ProcessingTime = processingTime;
             PointsPerTimeProcessed = pointsPerTimeProcessed;
-            Priority = priority;
+        }
+
+        public void SetResourceQuota(decimal quota)
+        {
+            Quota = quota;
+            PriorityScore = PointsPerTimeProcessed * (Quota / 100m);
         }
     }
 }
