@@ -54,9 +54,11 @@ namespace EntelectCompanyCup2021v2
                     if(shipCapacity - subClusters[y].NumberOfResources > 0)
                     {
                         resourceClusterIds.Add(subClusters[y].ClusterId);
+                        shipCapacity -= subClusters[y].NumberOfResources;
                     } else
                     {
                         resourceClusterIds.Add("0");
+                        break;
                     }
                 }
                 output.Add(String.Join(",", resourceClusterIds.ToArray()));
