@@ -39,25 +39,40 @@ namespace EntelectCompanyCup2021v2
         {
             var ships = sim.ShipCount;
             var quotas = sim.Quotas.OrderByDescending(q => q.QuotaAmount).ToList();
+
+            var allResourceClusters = new List<ResourceCluster>();
+            foreach(var quota in quotas)
+            {
+                var subClusters = sim.Clusters
+                     .Where(c => c.ResourceId == quota.ResourceId)
+                     .OrderByDescending(c => c.NumberOfResources).ToList();
+                allResourceClusters.AddRange(subClusters);
+            }
+
             List<string> output  = new List<string>();
+
+            var startingResource = 0;
             for (var x = 0; x<ships; x++)
             {
-               var subClusters = sim.Clusters
-                    .Where(c => c.ResourceId == quotas[x].ResourceId)
-                    .OrderByDescending(c => c.NumberOfResources).ToList();
-
                 List<string> resourceClusterIds = new List<string>() ;
 
                 var shipCapacity = sim.ShipCapacity;
                 
-                for(var y = 0; y< subClusters.Count; y++) { 
-                    if(shipCapacity - subClusters[y].NumberOfResources > 0)
+                for(var y = startingResource; y< allResourceClusters.Count; y++) { 
+                    if(shipCapacity - allResourceClusters[y].NumberOfResources > 0)
                     {
-                        resourceClusterIds.Add(subClusters[y].ClusterId);
-                        shipCapacity -= subClusters[y].NumberOfResources;
+                        if (y == allResourceClusters.Count -1)
+                        {
+                            resourceClusterIds.Add("0");
+                            startingResource = y;
+                            break;
+                        }
+                        resourceClusterIds.Add(allResourceClusters[y].ClusterId);
+                        shipCapacity -= allResourceClusters[y].NumberOfResources;
                     } else
                     {
                         resourceClusterIds.Add("0");
+                        startingResource = y;
                         break;
                     }
                 }
