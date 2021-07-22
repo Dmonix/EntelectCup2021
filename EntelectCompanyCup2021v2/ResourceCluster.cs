@@ -14,6 +14,8 @@ namespace EntelectCompanyCup2021v2
         public int Y { get; }
         public int Z { get; }
         public int NumberOfResources { get; }
+        public double DistanceFromCenter { get; }
+        public bool Visited = false;
 
         public ResourceCluster(int resourceId, string clusterId, int x, int y, int z, int numberOfResources)
         {
@@ -23,6 +25,7 @@ namespace EntelectCompanyCup2021v2
             Y = y;
             Z = z;
             NumberOfResources = numberOfResources;
+            DistanceFromCenter = Math.Sqrt((x * x) + (y * y) + (z * z));
         }
 
         public static ResourceCluster Create(string resourceId, string resourceData)
