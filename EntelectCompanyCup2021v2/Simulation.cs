@@ -12,11 +12,12 @@ namespace EntelectCompanyCup2021v2
         public int DepthZ { get; }
 
         public int UniqueResources { get; }
-        public int ShipCount { get; }
         public int ShipCapacity { get; }
         public int LabCount { get; }
         public int OutpostMaterialThreshold { get; }
         public int QuotaCount { get; }
+
+        public List<Ship> Ships { get; } = new List<Ship>();
 
         public List<Quota> Quotas { get; set; } = new List<Quota>();
         public List<ResourceCluster> Clusters { get; set; } = new List<ResourceCluster>();
@@ -28,11 +29,15 @@ namespace EntelectCompanyCup2021v2
             HeightY = heightY;
             DepthZ = depthZ;
             UniqueResources = uniqueResources;
-            ShipCount = shipCount;
             ShipCapacity = shipCapacity;
             LabCount = labCount;
             OutpostMaterialThreshold = outpostMaterialThreshold;
             QuotaCount = quotaCount;
+
+            for (int i = 0; i < shipCount; i++)
+            {
+                Ships.Add(new Ship(i));
+            }
         }
 
         public static Simulation Create(string inputLine)

@@ -57,6 +57,7 @@
     <Compile Include="Quota.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="ResourceCluster.cs" />
+    <Compile Include="Ship.cs" />
     <Compile Include="Simulation.cs" />
   </ItemGroup>
   <ItemGroup>

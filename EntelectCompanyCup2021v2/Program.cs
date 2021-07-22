@@ -41,22 +41,22 @@ namespace EntelectCompanyCup2021v2
 
         static string[] Traverse(Simulation sim)
         {
-            var ships = sim.ShipCount;
             var quotas = sim.Quotas.OrderBy(q => q.QuotaAmount).ToList();
 
             var allResourceClusters = new List<ResourceCluster>();
+
             foreach(var quota in quotas)
             {
                 var subClusters = sim.Clusters
                      .Where(c => c.ResourceId == quota.ResourceId)
-                     .OrderByDescending(c => c.NumberOfResources).ToList();
+                     .OrderByDescending(c => c.DistanceFromCenter).ToList();
                 allResourceClusters.AddRange(subClusters);
             }
 
             List<string> output  = new List<string>();
 
             var startingResource = 0;
-            for (var x = 0; x<ships; x++)
+            for (var x = 0; x < sim.Ships.Count; x++)
             {
                 List<string> resourceClusterIds = new List<string>() ;
 
@@ -106,7 +106,7 @@ namespace EntelectCompanyCup2021v2
 
             simulation.Quotas = quotas;
 
-            simulation.ProcessQuotas(Resources);
+            //simulation.ProcessQuotas(Resources);
 
             var clusterStartIndex = numberOfQuotas + quotaStartIndex;
             // Read resources - UR
