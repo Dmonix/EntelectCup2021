@@ -6,29 +6,37 @@ namespace EntelectCompanyCup2021v2
 {
     class Simulation
     {
-        public int SpaceshipCount { get; }
-        public int CrateCount { get; }
-        public int BaseCount { get; }
-        public int MapWidth { get; }
-        public int MapHeight { get; }
+        public int WidthX { get; }
+        public int HeightY { get; }
+        public int DepthZ { get; }
 
-        public Map Map { get; set; }
+        public int UniqueResources { get; }
+        public int ShipCount { get; }
+        public int ShipCapacity { get; }
+        public int LabCount { get; }
+        public int OutpostMaterialThreshold { get; }
+        public int QuotaCount { get; }
 
-        public Simulation(int spaceshipCount, int crateCount, int baseCount, int mapWidth, int mapHeight)
+        public Simulation(int widthX, int heightY, int depthZ, int uniqueResources, int shipCount, int shipCapacity, int labCount, int outpostMaterialThreshold, int quotaCount)
         {
-            SpaceshipCount = spaceshipCount;
-            CrateCount = crateCount;
-            BaseCount = baseCount;
-            MapWidth = mapWidth;
-            MapHeight = mapHeight;
+            WidthX = widthX;
+            HeightY = heightY;
+            DepthZ = depthZ;
+            UniqueResources = uniqueResources;
+            ShipCount = shipCount;
+            ShipCapacity = shipCapacity;
+            LabCount = labCount;
+            OutpostMaterialThreshold = outpostMaterialThreshold;
+            QuotaCount = quotaCount;
         }
-        public static Simulation Create(string[] values)
+
+        public static Simulation Create(string inputLine)
         {
-            return new Simulation(int.Parse(values[0]),
-                int.Parse(values[1]),
-                int.Parse(values[2]),
-                int.Parse(values[3]),
-                int.Parse(values[4]));
+            var items = inputLine.Split('|');
+            var coOrds = items[0].Split(',');
+
+            return new Simulation(int.Parse(coOrds[0]), int.Parse(coOrds[1]), int.Parse(coOrds[2]), 
+                int.Parse(items[1]), int.Parse(items[2]), int.Parse(items[3]), int.Parse(items[4]), int.Parse(items[5]), int.Parse(items[6]));
         }
     }
 }
